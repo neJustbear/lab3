@@ -5,7 +5,7 @@
 #include <regex>
 
 void is_valid_hyperlink(const std::string& str) {
-    static const std::regex r(R"(([\w+]+\:\/\/)?([\w\d-]+\.)*[\w-]+[\.\:]\w+([\/\?\=\&\#\.]?[\w-]+)*\/?)");
+    static const std::regex r(R"(((http|ftp|https)\:\/\/)?(([a-zA-Z0-9-]+\.[a-zA-Z0-9]+)+(\/?[?=&\d.\w-]+)*))");
     std::smatch match;
     if (regex_search(str, match, r))
         std::cout << match[0] << std::endl;
@@ -17,8 +17,6 @@ int main()
     setlocale(LC_ALL, "ru");
 
     std::ifstream fin;
-    //std::string file;
-    //std::cin >> file;
     fin.open("test.html");
     if (!fin)
         std::cout << "Ошибка открытия файла\n\n";
